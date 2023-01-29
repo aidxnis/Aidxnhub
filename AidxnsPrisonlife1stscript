@@ -1,0 +1,153 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Aidxns First Hub 🤤🐵", "BloodTheme")
+
+--main
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Guns🔫")
+
+MainSection:NewButton("Remington 870", "Gives you the Remington 870", function()
+    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+
+local args = {
+    [1] = game:GetService("Workspace")["Prison_ITEMS"].giver["Remington 870"].ITEMPICKUP,
+}
+
+workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+end)
+MainSection:NewButton("AK-47", "Gives you AK-47", function()
+    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+
+local args = {
+    [1] = game:GetService("Workspace")["Prison_ITEMS"].giver["AK-47"].ITEMPICKUP,
+}
+
+workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+end)
+ 
+MainSection:NewButton("M9", "Gives you the M9", function()
+    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+
+local args = {
+    [1] = game:GetService("Workspace")["Prison_ITEMS"].giver.M9.ITEMPICKUP,
+}
+
+workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+end)
+local MainSection = Main:NewSection("Melee🔪")
+MainSection:NewButton("Crude Knife", "Gives you the Crude Knife", function()
+    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+
+local args = {
+    [1] = game:GetService("Workspace")["Prison_ITEMS"].single["Crude Knife"].ITEMPICKUP,
+}
+
+workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+end)
+MainSection:NewButton("Hammer", "Gives you the Hammer", function()
+    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+
+local args = {
+    [1] = game:GetService("Workspace")["Prison_ITEMS"].single.Hammer.ITEMPICKUP,
+}
+
+workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+end)
+
+
+--LOCAL PLAYER
+local Player = Window:NewTab("Player")
+local PlayerSection = Player:NewSection("Character stuff⚡")
+
+PlayerSection:NewSlider("Walkspeed", "Makes the Player faster", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+PlayerSection:NewSlider("Jumppower", "Makes the Player Jump higher", 500, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+PlayerSection:NewButton("Noclip(N to togglewall)", "ButtonInfo", function()
+    local StealthMode = true -- If game has an anticheat that checks the logs
+
+local Indicator
+
+if not StealthMode then
+    local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+    print("NOCLIP: Press E to Activate")
+    Indicator = Instance.new("TextLabel", ScreenGui)
+    Indicator.AnchorPoint = Vector2.new(0, 1)
+    Indicator.Position = UDim2.new(0, 0, 1, 0)
+    Indicator.Size = UDim2.new(0, 200, 0, 50)
+    Indicator.BackgroundTransparency = 1
+    Indicator.TextScaled = true
+    Indicator.TextStrokeTransparency = 0
+    Indicator.TextColor3 = Color3.new(0, 0, 0)
+    Indicator.TextStrokeColor3 = Color3.new(1, 1, 1)
+    Indicator.Text = "Noclip: Enabled"
+end
+
+local noclip = false
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local mouse = player:GetMouse()
+
+mouse.KeyDown:Connect(function(key)
+    if key == "n" then
+        noclip = not noclip
+
+        if not StealthMode then
+            Indicator.Text = "Noclip: " .. (noclip and "Enabled" or "Disabled")
+        end
+    end
+end)
+
+while true do
+    player = game.Players.LocalPlayer
+    character = player.Character
+
+    if noclip then
+        for _, v in pairs(character:GetDescendants()) do
+            pcall(function()
+                if v:IsA("BasePart") then
+                    v.CanCollide = false
+                end
+            end)
+        end
+    end
+
+    game:GetService("RunService").Stepped:wait()
+end
+end)
+PlayerSection:NewButton("Click to TP", "when you click you teleport", function()
+    local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+mouse.Button1Down:Connect(function()
+	local target = mouse.Hit.p
+	player.Character:MoveTo(target)
+end)
+end)
+    --TELEPORTS
+    local TP = Window:NewTab("Teleports")
+    local Section = TP:NewSection("Teleports")
+    
+    Section:NewButton("CriminalBase", "Teleports you to the criminal base", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943.209351, 94.1287613, 2055.9895, 0.0279574543, -7.36704777e-08, -0.999609113, 3.04226084e-08, 1, -7.28484153e-08, 0.999609113, -2.83740622e-08, 0.0279574543)
+
+    end)
+    Section:NewButton("Cafeteria", "Teleports you to the Cafeteria", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(924.311279, 99.9899368, 2288.0271, -0.999486268, -1.50470481e-08, 0.0320491716, -1.52908175e-08, 1, -7.36103356e-09, -0.0320491716, -7.84731036e-09, -0.999486268)
+    end)
+    Section:NewButton("Guard Room", "Teleports you to the Guard room", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(836.679077, 99.9899826, 2264.8418, -0.998758316, -3.74625735e-08, 0.0498175435, -3.91080803e-08, 1, -3.20559543e-08, -0.0498175435, -3.39644224e-08, -0.998758316)
+    end)Section:NewButton("Front of Prison", "Teleports you infront of the prison", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(453.746704, 98.039917, 2217.77295, 0.00102933182, -2.78629209e-08, -0.999999464, 3.77397713e-09, 1, -2.7859052e-08, 0.999999464, -3.74529918e-09, 0.00102933182)
+    end)
+    Section:NewButton("Cells", "Teleports you to the cells", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(916.391602, 99.989975, 2453.36963, 0.999520242, -5.08237399e-08, -0.0309723131, 4.88289338e-08, 1, -6.51625029e-08, 0.0309723131, 6.36188986e-08, 0.999520242)
+    end)
+    Section:NewButton("Watch Tower", "Teleports you to watch Tower", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(502.124847, 130.039902, 2070.91309, 0.999998569, 3.44575497e-08, 0.00168990646, -3.46177593e-08, 1, 9.47749044e-08, -0.00168990646, -9.48332683e-08, 0.999998569)
+    end)Section:NewButton("Armor+", "Teleports you to Armor+ place", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(443.054382, 11.6253967, 1247.25842, 0.999175131, -6.01502563e-08, 0.0406092256, 6.28587244e-08, 1, -6.54191084e-08, -0.0406092256, 6.79177887e-08, 0.999175131)
+    end)
+    
